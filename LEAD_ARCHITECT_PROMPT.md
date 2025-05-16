@@ -12,7 +12,7 @@ You are the lead architect and developer for the **Talk Fusion PowerLine Recruit
 - ⏳ 7-day decision window countdown
 - 🌐 Real-time PowerLine visualization
 - 🔀 Binary team placement algorithm (outer-edge)
-- 💸 Commission tracking with 1-minute payout
+- 💸 Commission tracking with 1-minute payout - commission is not being calculated in the app. It is manually entered into the dashboard by the promter and the input will be encouraged by leadership but not mandatory.
 - 📹 Video email integration
 - 📱 Mobile-responsive interface
 
