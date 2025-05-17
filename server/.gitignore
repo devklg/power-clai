@@ -1,0 +1,13 @@
+nosw_modules/
+**/.local-chromium/
+*.dll
+*.exe
+# dependencies
+**/node_modules/
+
+# Puppeteer Chromium
+**/.local-chromium/
+
+# binaries
+*.dll
+*.exe
