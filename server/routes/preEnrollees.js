@@ -127,6 +127,38 @@ router.get('/:id', auth, async (req, res) => {
   }
 });
 
+// @route   GET api/pre-enrollees/recent
+// @desc    Get recent pre-enrollees
+// @access  Public
+router.get('/recent', async (req, res) => {
+  try {
+    const limit = parseInt(req.query.limit) || 10;
+    
+    const preEnrollees = await PreEnrollee.find({ status: 'active' })
+      .sort({ createdAt: -1 })
+      .limit(limit)
+      .select('firstName lastName preferredPackage createdAt');
+    
+    res.json(preEnrollees);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
+// @route   GET api/pre-enrollees/count
+// @desc    Get total count of pre-enrollees
+// @access  Public
+router.get('/count', async (req, res) => {
+  try {
+    const count = await PreEnrollee.countDocuments({ status: 'active' });
+    res.json({ count });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
 // @route   PUT api/pre-enrollees/:id/convert
 // @desc    Convert pre-enrollee to promoter
 // @access  Private
