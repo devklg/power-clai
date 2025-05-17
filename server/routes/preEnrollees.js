@@ -5,6 +5,8 @@ const { check, validationResult } = require('express-validator');
 
 const PreEnrollee = require('../models/PreEnrollee');
 const Promoter = require('../models/Promoter');
+const User = require('../models/User');
+const { placeInBinary } = require('../utils/binaryPlacement');
 
 // @route   POST api/pre-enrollees
 // @desc    Create a new pre-enrollee
@@ -187,7 +189,119 @@ router.put('/:id/convert', auth, async (req, res) => {
 
     // Logic to create a new promoter would go here
     // This would include creating a promoter record and updating user role
+// Existing routes remain unchanged...
 
+// @route   PUT api/pre-enrollees/:id/convert
+// @desc    Convert pre-enrollee to promoter
+// @access  Private
+router.put('/:id/convert', auth, [
+  check('package', 'Package is required').isIn(['starter', 'elite', 'pro']),
+  check('address', 'Address information is required').isObject(),
+  check('address.street', 'Street address is required').not().isEmpty(),
+  check('address.city', 'City is required').not().isEmpty(),
+  check('address.state', 'State is required').not().isEmpty(),
+  check('address.zipCode', 'ZIP/Postal code is required').not().isEmpty(),
+  check('address.country', 'Country is required').not().isEmpty()
+], async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
+  try {
+    const preEnrollee = await PreEnrollee.findById(req.params.id);
+    
+    if (!preEnrollee) {
+      return res.status(404).json({ msg: 'Pre-enrollee not found' });
+    }
+
+    // Verify this is the user's own pre-enrollee record or admin
+    if (req.user.role !== 'admin' && preEnrollee.email !== req.user.email) {
+      return res.status(403).json({ msg: 'Not authorized' });
+    }
+
+    // Check if pre-enrollee is already converted
+    if (preEnrollee.status === 'converted') {
+      return res.status(400).json({ msg: 'Pre-enrollee already converted' });
+    }
+
+    // Check if pre-enrollee is expired
+    if (preEnrollee.status === 'expired') {
+      return res.status(400).json({ msg: 'Pre-enrollee record has expired' });
+    }
+
+    // Update pre-enrollee status
+    preEnrollee.status = 'converted';
+    await preEnrollee.save();
+
+    // Generate unique promoter ID
+    const promoterId = `P${preEnrollee.positionNumber}`;
+
+    // Create new promoter
+    const newPromoter = new Promoter({
+      userId: req.user.id,
+      promoterId,
+      firstName: preEnrollee.firstName,
+      lastName: preEnrollee.lastName,
+      email: preEnrollee.email,
+      phone: preEnrollee.phone,
+      address: req.body.address,
+      package: req.body.package,
+      enrollerId: preEnrollee.enrollerId,
+      enrollerIdNumber: preEnrollee.enrollerIdNumber,
+      positionNumber: preEnrollee.positionNumber,
+      leftTeam: [],
+      rightTeam: [],
+      leftTeamVolume: 0,
+      rightTeamVolume: 0,
+      personalReferrals: [],
+      totalEarnings: 0,
+      rank: 'Bronze'
+    });
+
+    // Save promoter
+    const promoter = await newPromoter.save();
+
+    // Place in binary tree using algorithm
+    let binaryPlacement = null;
+    try {
+      binaryPlacement = await placeInBinary(promoter._id, preEnrollee.enrollerId);
+    } catch (error) {
+      console.error(`Binary placement error: ${error.message}`);
+      // Continue even if binary placement fails - can be fixed later
+    }
+
+    // Update user role
+    await User.findByIdAndUpdate(req.user.id, { role: 'promoter' });
+
+    // Emit socket event for real-time updates
+    const io = req.app.get('io');
+    if (io) {
+      io.emit('powerline_update', {
+        type: 'conversion',
+        data: {
+          firstName: promoter.firstName,
+          lastName: promoter.lastName,
+          position: promoter.positionNumber,
+          package: promoter.package,
+          placement: binaryPlacement,
+          timestamp: new Date()
+        }
+      });
+    }
+
+    res.json({ 
+      msg: 'Pre-enrollee converted to promoter',
+      promoter,
+      binaryPlacement
+    });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
+module.exports = router;
     res.json({ msg: 'Pre-enrollee converted to promoter' });
   } catch (err) {
     console.error(err.message);
