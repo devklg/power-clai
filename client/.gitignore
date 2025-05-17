@@ -22,3 +22,18 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+# dependencies
+node_modules/
+server/node_modules/
+
+# Puppeteer ships its own Chromium—ignore it
+**/.local-chromium/
+
+# optional: if you ever have .dlls, .exe, etc., ignore all binaries by extension
+*.dll
+*.exe
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
