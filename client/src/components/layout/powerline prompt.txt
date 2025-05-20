@@ -1,0 +1,72 @@
+I need to build a PowerLine recruitment platform for my team, Magnificent Worldwide Marketing & Sales Group, to promote Talk Fusion. This is an independent promoter tool (not affiliated with Talk Fusion's corporate site) that helps with lead generation, education, and team building.
+
+Core Requirements
+Landing Page: Create a professional landing page that explains:
+Video email technology and its market potential
+Talk Fusion's business opportunity and compensation plan
+Our PowerLine recruitment system advantages
+PowerLine System: Implement a visual system that:
+Places pre-enrollees in sequential order
+Shows real-time (or simulated) growth
+Creates urgency with position numbers
+Displays new members joining below a prospect's position
+Pre-Enrollment Flow:
+No-cost, no-obligation signup
+7-day decision window with countdown timer
+Clear path to conversion as Talk Fusion promoter
+Welcome page with position confirmation
+Education Center:
+Resources explaining Talk Fusion products
+Compensation plan breakdown
+Video email benefits and statistics
+Training materials for team building
+Promoter Tools:
+Dashboard for tracking pre-enrollees
+Lead management system
+Team growth visualization
+Resources for helping new members
+Technical Specifications
+Frontend: React with Tailwind CSS for styling
+Backend: Node.js/Express with MongoDB
+Real-time Updates: Socket.IO integration
+Authentication: JWT-based user management
+Mobile Responsive: Works on all devices
+Design Guidelines
+Color Scheme: Dark theme with blue/gold accents
+Primary blue: 
+#3b82f6
+Gold accent: 
+#facc15
+Dark backgrounds: 
+#0f172a, 
+#1e293b
+Typography:
+Font family: Poppins
+Clear hierarchy with distinct headings
+Readable text sizes on all devices
+User Journeys
+Please implement these key user journeys:
+
+Prospect Journey:
+Landing page → Pre-enrollment → Welcome page with position → PowerLine dashboard → Decision to join
+Promoter Journey:
+Registration → Dashboard access → Lead tracking → Pre-enrollee conversion → Team building
+Key Components to Create
+CountdownTimer: Visual timer showing days, hours, minutes, seconds until decision deadline
+PowerLineVisualization: Dynamic display of sequential member placement
+PreEnrollmentForm: Collects prospect information without financial commitment
+EducationHub: Organized library of training resources
+PromoterDashboard: Tools for team management and lead tracking
+Important Notes
+This is NOT integrated with Talk Fusion's official systems
+No actual payment processing in the app
+The conversion process involves manually helping prospects sign up on Talk Fusion's site
+Commission tracking is for reference only, not linked to Talk Fusion's payment system
+The primary value is in education, visualization, and systematic recruitment
+Deliverables
+Frontend code for all pages and components
+Backend API for user management and PowerLine data
+Real-time update system for PowerLine visualization
+Mobile-responsive implementation
+Clean, professional design following the specified guidelines
+Please provide code snippets, design recommendations, and implementation guidance based on these requirements. Focus on creating an effective, professional tool that helps my team build our Talk Fusion business through education and systematic recruitment.

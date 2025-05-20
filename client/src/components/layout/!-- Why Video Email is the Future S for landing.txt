@@ -1,0 +1,67 @@
+    <!-- Why Video Email is the Future Section -->
+    <section class="py-10 md:py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center section-title mb-12">Why Video Email is the Future</h2>
+            <div class="text-center mb-10">
+                <p class="text-xl max-w-4xl mx-auto">Video email isn't just the next evolution in communication—it's a paradigm shift that's transforming how businesses and individuals connect in the digital age.</p>
+            </div>
+            
+            <!-- Video Email vs Text Email Comparison -->
+            <div class="mb-16">
+                <h3 class="text-2xl font-semibold text-center mb-8">The Power of Video Over Plain Text</h3>
+                <div class="grid md:grid-cols-2 gap-8 relative">
+                    <div class="dark-card p-6 rounded-xl revolution-card">
+                        <h4 class="text-xl font-semibold mb-4 text-center">Traditional Text Email</h4>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <span class="comparison-x"><i class="fas fa-times"></i></span>
+                                <span>Easily overlooked in crowded inboxes</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="comparison-x"><i class="fas fa-times"></i></span>
+                                <span>55% of communication (tone, emotion) lost in text</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="comparison-x"><i class="fas fa-times"></i></span>
+                                <span>23% average open rate</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="comparison-x"><i class="fas fa-times"></i></span>
+                                <span>No emotional connection with audience</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="comparison-x"><i class="fas fa-times"></i></span>
+                                <span>Limited ability to explain complex concepts</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="dark-card p-6 rounded-xl revolution-card">
+                        <h4 class="text-xl font-semibold mb-4 text-center">Talk Fusion Video Email</h4>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <span class="comparison-check"><i class="fas fa-check"></i></span>
+                                <span>300% higher engagement rates</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="comparison-check"><i class="fas fa-check"></i></span>
+                                <span>Captures 93% of communication (facial expressions, tone)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="comparison-check"><i class="fas fa-check"></i></span>
+                                <span>Up to 65% open rates</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="comparison-check"><i class="fas fa-check"></i></span>
+                                <span>Creates authentic human connection</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="comparison-check"><i class="fas fa-check"></i></span>
+                                <span>Dramatically increases message clarity and retention</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="vs-badge">VS</div>
+                </div>
+            </div>
